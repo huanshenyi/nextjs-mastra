@@ -3,10 +3,10 @@
 import { mastra } from "@/mastra";
 
 export async function getWeatherInfo(prevState: unknown, formData: FormData) {
-  const city = JSON.parse(formData.get("city") as string);
-  const agent = mastra.getAgent("weatherAgent");
+  const recipe = JSON.parse(formData.get("recipe") as string);
+  const agent = mastra.getAgent("CookingAgent");
 
-  const result = await agent.generate(`What's the weather like in ${city}?`);
+  const result = await agent.generate(`Please come up with a ${recipe} using this ingredient`);
 
   return {
     text: result.text,
