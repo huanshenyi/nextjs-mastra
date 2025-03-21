@@ -2,7 +2,13 @@
 
 Nextjs & Mastra deploy to ECS
 
-First, run the development server:
+First Set you Env
+
+```bash
+cp .env.example .env.development
+```
+
+And, run the development server:
 
 ```bash
 npm run dev
