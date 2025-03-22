@@ -2,7 +2,7 @@
 
 import { mastra } from "@/mastra";
 
-export async function getWeatherInfo(prevState: unknown, formData: FormData) {
+export async function getCookingInfo(prevState: unknown, formData: FormData) {
   const recipe = JSON.parse(formData.get("recipe") as string);
   const agent = mastra.getAgent("CookingAgent");
 

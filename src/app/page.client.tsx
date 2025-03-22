@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useActionState, startTransition } from "react";
-import { getWeatherInfo } from "./actions";
+import { getCookingInfo } from "./actions";
 
 export function CookingForm() {
   const [recipe, setrecipe] = useState("");
   const [result, setResult] = useState("");
 
-  const [state, action, isPending] = useActionState(getWeatherInfo, null);
+  const [state, action, isPending] = useActionState(getCookingInfo, null);
   useEffect(() => {
     if (state?.text) {
       setResult(state.text);
