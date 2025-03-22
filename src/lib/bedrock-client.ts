@@ -1,7 +1,6 @@
 import { createAmazonBedrock } from "@ai-sdk/amazon-bedrock";
 import { fromNodeProviderChain } from "@aws-sdk/credential-providers";
 
-// Bedrockクライアントの初期化を関数化
 export function initializeBedrockClient() {
   const region = process.env.REGION || "ap-northeast-1";
   if (process.env.NODE_ENV === "production") {

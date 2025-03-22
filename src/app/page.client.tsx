@@ -4,7 +4,7 @@ import { useState, useEffect, useActionState, startTransition } from "react";
 import { getCookingInfo } from "./actions";
 
 export function CookingForm() {
-  const [recipe, setrecipe] = useState("");
+  const [recipe, setRecipe] = useState("");
   const [result, setResult] = useState("");
 
   const [state, action, isPending] = useActionState(getCookingInfo, null);
@@ -31,7 +31,7 @@ export function CookingForm() {
           <input
             type="text"
             value={recipe}
-            onChange={(e) => setrecipe(e.target.value)}
+            onChange={(e) => setRecipe(e.target.value)}
             placeholder="食材名を入力"
             className="flex-grow px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
