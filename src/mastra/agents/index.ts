@@ -1,6 +1,5 @@
 import { initializeBedrockClient } from "@/lib/bedrock-client";
 import { Agent } from "@mastra/core/agent";
-// import { weatherTool } from "../tools";
 
 const bedrock = initializeBedrockClient();
 
@@ -40,5 +39,4 @@ export const CookingAgent = new Agent({
 ユーザーからの情報が不足している場合は、適切な質問をして必要な情報を引き出してください。常に実用的で美味しく、作る喜びを感じられるレシピを提案することを心がけてください。
 `,
   model: bedrock("anthropic.claude-3-5-sonnet-20240620-v1:0"),
-  // tools: { weatherTool },
 });
