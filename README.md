@@ -63,3 +63,13 @@ topic/iot-agentブランチでは、IoTセンサーを活用したトマト栽�
 Q: トマトの葉が黄色くなってきました。何が問題ですか？
 A: [トマト観察エージェントが診断と対策を提案]
 ```
+
+### use Langfuse
+
+[Langfuse](https://langfuse.com/ )のアカウントを作って、キーを.envにセットしてください。
+
+```bash
+PUBLICK_KEY=your-value-here
+SECRET_KEY=your-value-here
+BASE_URL=https://cloud.langfuse.com
+```
