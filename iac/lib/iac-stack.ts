@@ -131,7 +131,10 @@ export class IacStack extends cdk.Stack {
       protocol: elbv2.ApplicationProtocol.HTTP,
       healthCheck: {
         path: "/",
-        interval: cdk.Duration.seconds(60),
+        interval: cdk.Duration.seconds(120),  // Reduced frequency to minimize server load
+        timeout: cdk.Duration.seconds(5),     // Short timeout for quick failure detection
+        healthyThresholdCount: 2,             // Require fewer successful checks to mark as healthy
+        unhealthyThresholdCount: 3,           // Require more failed checks to mark as unhealthy
       },
     });
 
