@@ -2,6 +2,8 @@
 import * as cdk from 'aws-cdk-lib';
 import { IacStack } from '../lib/iac-stack';
 import { EcrStack } from '../lib/ecr-stack';
+// IoT Agent
+import { HumidityTemperatureStack } from "../lib/humidity-temperature-stack";
 
 const app = new cdk.App();
 
@@ -23,3 +25,5 @@ new IacStack(app, 'NextjsAppStack', {
   repository: ecrStack.repository,
   imageTag: imageTag,
 });
+
+new HumidityTemperatureStack(app, "HumidityTemperatureStack", {});
