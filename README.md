@@ -1,14 +1,51 @@
-## explanation
+# Nextjs & Mastra AI Application
 
-Nextjs & Mastra deploy to ECS
+This project is a Next.js application that uses Mastra AI framework to create intelligent agents and deploys to AWS ECS.
 
-First Set you Env
+## 📋 Table of Contents
+
+- [Project Overview](#project-overview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Environment Setup](#environment-setup)
+  - [Development Server](#development-server)
+- [Docker Build](#docker-build)
+- [Infrastructure Deployment](#infrastructure-deployment)
+- [Use Cases](#use-cases)
+  - [Main Branch: Chef AI Agent](#main-branch-chef-ai-agent)
+  - [IoT Agent Branch: Tomato Observation Agent](#iot-agent-branch-tomato-observation-agent)
+- [Monitoring with Langfuse](#monitoring-with-langfuse)
+- [Project Structure](#project-structure)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [License](#license)
+
+## 🔍 Project Overview
+
+This application combines Next.js with Mastra AI framework to create intelligent agents that can assist users with various tasks. The application is containerized with Docker and can be deployed to AWS ECS using the provided infrastructure as code (IaC).
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (version compatible with Next.js 15.2.3)
+- npm or yarn or pnpm or bun
+- Docker (for containerization)
+- AWS CLI (for deployment)
+
+### Environment Setup
+
+First, create your environment file:
 
 ```bash
 cp .env.example .env.development
 ```
 
-And, run the development server:
+Make sure to update the environment variables in the `.env.development` file with your specific values.
+
+### Development Server
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -20,56 +57,91 @@ pnpm dev
 bun dev
 ```
 
-## build image
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+## 🐳 Docker Build
+
+To build and run the Docker image:
 
 ```bash
+# Build the Docker image
 docker buildx build --no-cache --platform=linux/x86_64 -t nextjs-mastra .
 
+# Run the container locally
 docker run -p 3000:3000 nextjs-mastra
 ```
 
-## deploy infra
+This will make the application available at [http://localhost:3000](http://localhost:3000).
 
-[ドキュメント](./iac/README.md)
+## 🏗️ Infrastructure Deployment
 
-## use case
+For detailed instructions on deploying the infrastructure to AWS, please refer to the [Infrastructure Documentation](./iac/README.md).
 
-### メインブランチ: 料理エージェント
+## 💡 Use Cases
 
-メインブランチでは、「シェフAI」という料理レシピアシスタントを実装しています。このエージェントは以下の機能を提供します：
+### Main Branch: Chef AI Agent
 
-- ユーザーの好み、制約（アレルギー、食事制限など）に合わせたレシピ提案
-- 季節の食材や旬の素材を活かしたレシピ提案
-- 料理の基本テクニックの説明
-- 食材の保存方法や活用法についてのアドバイス
+The main branch implements "Chef AI", a cooking recipe assistant that provides the following features:
 
-使用例：
+- Recipe suggestions based on user preferences and constraints (allergies, dietary restrictions, etc.)
+- Seasonal ingredient recommendations
+- Explanation of basic cooking techniques
+- Advice on food storage and usage
+
+Example usage:
 ```
-Q: 夏野菜を使った簡単な料理を教えてください
-A: [シェフAIがレシピを提案]
-```
-
-### topic/iot-agentブランチ: トマト観察エージェント
-
-topic/iot-agentブランチでは、IoTセンサーを活用したトマト栽培観察用のエージェントを実装しています。このエージェントは以下の機能を提供します：
-
-- トマト栽培環境（温度、湿度など）のモニタリング
-- 栽培状況に基づいた最適なケア方法の提案
-- 異常値検出と対応策のアドバイス
-- 成長記録の管理と分析
-
-使用例：
-```
-Q: トマトの葉が黄色くなってきました。何が問題ですか？
-A: [トマト観察エージェントが診断と対策を提案]
+Q: 夏野菜を使った簡単な料理を教えてください (Please suggest an easy recipe using summer vegetables)
+A: [Chef AI provides recipe suggestions]
 ```
 
-### use Langfuse
+### IoT Agent Branch: Tomato Observation Agent
 
-[Langfuse](https://langfuse.com/ )のアカウントを作って、キーを.envにセットしてください。
+The `topic/iot-agent` branch implements an agent for tomato cultivation observation using IoT sensors. This agent provides:
+
+- Monitoring of tomato growing environment (temperature, humidity, etc.)
+- Optimal care recommendations based on growing conditions
+- Anomaly detection and countermeasures
+- Growth record management and analysis
+
+Example usage:
+```
+Q: トマトの葉が黄色くなってきました。何が問題ですか？ (My tomato leaves are turning yellow. What's the problem?)
+A: [Tomato observation agent provides diagnosis and countermeasures]
+```
+
+## 📊 Monitoring with Langfuse
+
+This project uses [Langfuse](https://langfuse.com/) for monitoring AI interactions. To set it up:
+
+1. Create a Langfuse account
+2. Add your Langfuse keys to your `.env` file:
 
 ```bash
 PUBLICK_KEY=your-value-here
 SECRET_KEY=your-value-here
 BASE_URL=https://cloud.langfuse.com
 ```
+
+## 📁 Project Structure
+
+- `/src/app`: Next.js application pages and components
+- `/src/lib`: Utility functions and API clients
+- `/src/mastra`: Mastra AI agents and tools
+- `/iac`: Infrastructure as Code for AWS deployment
+- `/public`: Static assets
+
+## 📚 Documentation
+
+- [Architecture Overview](./ARCHITECTURE.md): System architecture and component details
+- [Infrastructure Documentation](./iac/README.md): AWS deployment instructions
+- [Contributing Guidelines](./CONTRIBUTING.md): How to contribute to this project
+- [Environment Variables](./.env.example): Example environment configuration
+- [Troubleshooting Guide](./TROUBLESHOOTING.md): Solutions to common issues
+
+## 👥 Contributing
+
+Contributions are welcome! Please see our [Contributing Guidelines](./CONTRIBUTING.md) for more information on how to get involved.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
